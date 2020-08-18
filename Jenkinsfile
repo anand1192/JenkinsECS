@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Git Checkout'){
       git 'https://github.com/anand1192/JenkinsHtml.git'
-    }
+    }
     stage('Build Docker Image'){
         sh 'docker build -t ak217/dockerpythonserver:2.0.0 .'
     }
