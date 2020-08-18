@@ -1,4 +1,8 @@
-node{stage('Git Checkout'){
+pipeline {
+    agent any
+
+  stages {
+    stage('Git Checkout'){
       git 'https://github.com/anand1192/JenkinsHtml.git'
     }
     stage('Build Docker Image'){
