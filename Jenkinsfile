@@ -1,7 +1,4 @@
-pipeline {
-    agent any
-
-  stages {
+node {
     stage('Git Checkout'){
       git 'https://github.com/anand1192/JenkinsHtml.git'
     }
