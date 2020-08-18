@@ -6,7 +6,7 @@ pipeline {
       git 'https://github.com/anand1192/JenkinsHtml.git'
     }
       stage('Build Docker Image'){
-        sh 'docker build -t ak217/dockerpythonserver:2.0.0 .'
+          sh 'docker build -t ak217/dockerpythonserver:2.0.0 .'
       }
       stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerpwd')]) {
