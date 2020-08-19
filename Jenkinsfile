@@ -4,8 +4,8 @@ node {
     }
       stage('Pre-Build Stage'){
           sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 786678469955.dkr.ecr.ap-south-1.amazonaws.com'
-          sh "COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
-          sh "IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')"
+          sh "COMMIT_HASH=$(echo \$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
+          sh "IMAGE_TAG=build-$(echo \$CODEBUILD_BUILD_ID | awk -F":" '{print \$2}')"
       }
       stage('Build Stage'){
           sh 'docker build -t $REPOSITORY_URI:latest .'
