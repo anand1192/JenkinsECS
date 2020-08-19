@@ -10,7 +10,7 @@ node {
           sh "docker build -t ${REPOSITORY_URI}:latest ."
           sh "COMMIT_HASH=${echo '$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7'}"
           sh "IMAGE_TAG=build-${echo '$CODEBUILD_BUILD_ID | awk -F\":\" \'{print $2}\''}"
-          sh "docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:\$IMAGE_TAG"
+          sh "docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:${IMAGE_TAG}"
       }
       stage('Deploy Docker Image'){
           sh "docker push ${REPOSITORY_URI}:latest"
