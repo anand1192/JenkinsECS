@@ -7,10 +7,10 @@ node {
       }
       stage('Build Stage'){
           def REPOSITORY_URI = '786678469955.dkr.ecr.ap-south-1.amazonaws.com/jenkinsrepo'
+          def IMAGE_TAG = 'sh "IMAGE_TAG=build-${echo '$CODEBUILD_BUILD_ID | awk -F\":\" \'{print $2}\''}"'
           sh "docker build -t ${REPOSITORY_URI}:latest ."
           sh "COMMIT_HASH=${echo '$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7'}"
-          sh "IMAGE_TAG=build-${echo '$CODEBUILD_BUILD_ID | awk -F\":\" \'{print $2}\''}"
-          sh "docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:'$IMAGE_TAG'"
+          sh "docker tag ${REPOSITORY_URI}:latest ${REPOSITORY_URI}:${IMAGE_TAG}"
       }
       stage('Deploy Docker Image'){
           sh "docker push ${REPOSITORY_URI}:latest"
