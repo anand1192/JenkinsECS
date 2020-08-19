@@ -11,6 +11,7 @@ node {
           sh "COMMIT_HASH=${echo '$CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7'}"
       }
       stage('Deploy Docker Image'){
+          def REPOSITORY_URI = '786678469955.dkr.ecr.ap-south-1.amazonaws.com/jenkinsrepo'
           sh "docker push ${REPOSITORY_URI}:latest"
       }
  }
